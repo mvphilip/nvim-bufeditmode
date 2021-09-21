@@ -1,0 +1,74 @@
+*bufmode.txt*          Plugin for managing buffers
+*bufmode*
+
+Author: Iron-E – https://github.com/Iron-E & https://gitlab.com/Iron_E
+Web: https://github.com/Iron-E/bufmode
+
+|bufmode| is a Vim plugin for managing windows. Built-in functionality includes
+window selection, window buffer swapping, and window resizing. The plugin is
+extensible, allowing additional functionality to be added (see
+|bufmode-configuration| below).
+
+==============================================================================
+0. Table of Contents                                               *bufmode-toc*
+
+1. Requirements ............ |bufmode-requirements|
+2. Usage ................... |bufmode-usage|
+3. Configuration ........... |bufmode-configuration|
+
+==============================================================================
+1. Requirements                                           *bufmode-requirements*
+
+- |nvim-libmodal|
+	- https://github.com/Iron-E/nvim-libmodal
+- |barbar| (optional)
+	- https://github.com/romgrk/barbar.nvim
+
+==============================================================================
+2. Usage                                                         *bufmode-usage*
+
+                                                                 *:BufmodeEnter*
+                                                          *<Plug>(BufmodeEnter)*
+Enter |bufmode| with <leader><Tab> or |:BufmodeEnter|.
+
+Key                                       Use
+----------------------------------------  -----------------------------------
+<Esc>                                     Leave `bufmode`
+`?`                                         Show help message
+`^`,`0`,<Home>,<Up>                           Go to beginning of buffer list.
+`$`,<End>,<Down>                            Go to end of buffer list.
+`b`,`j`,`h`,<Left>,<PageUp>                     Go to buffer left.
+`w`,`k`,`l`,<Right>,<PageDown>                  Go to buffer right.
+<S-b>,<S-j>,<S-h>,<S-Left>,<S-PageUp>     Move current buffer to the left.
+<S-w>,<S-k>,<S-l>,<S-Right>,<S-PageDown>  Move current buffer to the right.
+`d`                                         Delete the current buffer.
+`f`,`g`,`t`                                     Goto buffer by name.
+`p`                                         Pick buffer for current window.
+`r`                                         Replace current buffer with new.
+
+==============================================================================
+3. Configuration                                         *bufmode-configuration*
+
+------------------------------------------------------------------------------
+DEFAULTS                                                      *bufmode-defaults*
+
+By default, |bufmode| is started with <leader><Tab> or |:BufmodeEnter|. If
+any mapping for |<Plug>(BufmodeEnter)| is detected, this default will not
+load. >
+	map <leader><Tab> <Plug>(BufmodeEnter)
+<
+
+------------------------------------------------------------------------------
+MAPPINGS                                                      *bufmode-mappings*
+                                                            *g:bufmode_mappings*
+
+One may |tbl_extend| the mappings from |:BufmodeEnter| by providing a global map
+of desired mappings: >
+	vim.g.bufmode_mappings = {}
+<
+
+	*Error	if |g:bufmode_mappings| has any mapping from |:BufmodeEnter|.
+	      	e.g. `vim.g.bufmode_mappings = {b = 'some_command'}`
+
+==============================================================================
+ vim:tw=78:ts=4:ft=help:norl:
